@@ -1,0 +1,132 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "tc-bench",
+  "description": "Video generation has many unique challenges beyond those of image generation.The temporal dimension introduces extensive possible variations across frames,over which consistency and continuity may be violated. In this study, we movebeyond evaluating simple actions and argue that generated videos should incorpo-rate the emergence of new concepts and their relation transitions like in real-worldvideos as time progresses. To assess the Temporal Compositionality of videogeneration models, we propose TC-Bench, a benchmark of meticulously craftedtext prompts, corresponding ground truth videos, and robust evaluation metrics.The prompts articulate the initial and final states of scenes, effectively reducingambiguities for frame development and simplifying the assessment of transitioncompletion. In addition, by collecting aligned real-world videos corresponding tothe prompts, we expand TC-Bench\u2019s applicability from text-conditional modelsto image-conditional ones that can perform generative frame interpolation. Wealso develop new metrics to measure the completeness of component transitions ingenerated videos, which demonstrate significantly higher correlations with humanjudgments than existing metrics. Our comprehensive experimental results revealthat most video generators achieve less than 20% of the compositional changes,highlighting enormous space for future improvement. Our analysis indicates thatcurrent video generation models struggle to interpret descriptions of compositionalchanges and dynamically map varied semantics across different time steps.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "will be provided later",
+  "url": "https://github.com/weixi-feng/tc-bench",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "github-repository",
+      "name": "github-repository",
+      "description": "TC-Bench repository on GitHub.",
+      "contentUrl": "https://github.com/weixi-feng/tc-bench",
+      "encodingFormat": "git+https",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "json-files",
+      "name": "json-files",
+      "description": "JSON files are hosted on the GitHub repository.",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "application/json",
+      "includes": "*.json"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "json",
+      "name": "json",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "json/id",
+          "name": "id",
+          "description": "id for each sample",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "json-files"
+            },
+            "extract": {
+              "column": "prompt"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "jsonl/prompt",
+          "name": "prompt",
+          "description": "Text prompt.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "json-files"
+            },
+            "extract": {
+              "column": "prompt"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "json/type",
+          "name": "type",
+          "description": "temporal compositionality type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "json-files"
+            },
+            "extract": {
+              "column": "type"
+            },
+            "transform": {
+              "regex": "^(.*)\\.json$"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
