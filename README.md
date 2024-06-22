@@ -10,5 +10,6 @@
 <sup>1</sup>UC Santa Barbara, <sup>2</sup>University of Waterloo
 <br>
 
-[Project Page](https://weixi-feng.github.io/tc-bench) | [arxiv (coming soon)](https://arxiv.org/)
+[Project Page](https://weixi-feng.github.io/tc-bench) | [arxiv (coming soon)](https://arxiv.org/abs/2406.08656)
 
+More details coming soon.
